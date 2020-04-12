@@ -18,6 +18,13 @@ CREATE TABLE `COURSES` (
     PRIMARY KEY (`CourseID`)
  );
  
+ DROP TABLE IF EXISTS `ENROLLMENT`;
+ CREATE TABLE `ENROLLMENT` (
+   `StudentID` int(11) NOT NULL,
+   `CourseID` int(11) NOT NULL,
+   PRIMARY KEY (StudentID, CourseID)
+);
+ 
 /* STUDENT INFORMATION */
 INSERT INTO `STUDENTS` (FirstName, LastName, Major)
 VALUES ('Harriet', 'Tubman', 'Computer Science');
@@ -61,3 +68,7 @@ INSERT INTO `COURSES` (CourseID, CourseName, Department, CourseNumber, Semester,
 VALUES (CourseID, 'Intro to Linear Algebra', 'MATH', '001', 'Spring', 2020);
 INSERT INTO `COURSES` (CourseID, CourseName, Department, CourseNumber, Semester, SchoolYear)
 VALUES (CourseID, 'Spanish I', 'SPAN', '001', 'Fall', 2019);
+
+/* ENROLLMENT INFOMATION */
+INSERT INTO `ENROLLMENT` (StudentID, CourseID)
+VALUES (StudentID, CourseID);
