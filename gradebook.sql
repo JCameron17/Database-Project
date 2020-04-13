@@ -18,11 +18,40 @@ CREATE TABLE `COURSES` (
     PRIMARY KEY (`CourseID`)
  );
  
+DROP TABLE IF EXISTS `ENROLLMENT`;
+CREATE TABLE `ENROLLMENT` (
+  `StudentID` int(11) NOT NULL,
+  `CourseID` int(11) NOT NULL,
+  PRIMARY KEY (StudentID, CourseID)
+);
+ 
+DROP TABLE IF EXISTS `DISTRIBUTION`;
+CREATE TABLE `DISTRIBUTION` (
+  `DistribID` int(11) NOT NULL AUTO_INCREMENT,
+  `CourseID` int(11) DEFAULT NULL,
+  `Type` varchar(255) DEFAULT NULL,
+  `Percent` int(3) DEFAULT NULL,
+  PRIMARY KEY (`DistribID`),
+  FOREIGN KEY (`CourseID`) REFERENCES Courses(CourseID)
+);
+
+DROP TABLE IF EXISTS `ASSIGNMENTS`;
+CREATE TABLE `ASSIGNMENTS` (
+  `AssignID` int(11) NOT NULL AUTO_INCREMENT,
+  `DistribID` int(11) DEFAULT NULL,
+  `Instance` int(11) DEFAULT NULL,
+  `MaxPoints` int(3) DEFAULT NULL,
+  PRIMARY KEY (`AssignID`),
+  FOREIGN KEY (`DistribID`) REFERENCES Distribution(DistribID)
+);
+
  DROP TABLE IF EXISTS `ENROLLMENT`;
  CREATE TABLE `ENROLLMENT` (
    `StudentID` int(11) NOT NULL,
    `CourseID` int(11) NOT NULL,
-   PRIMARY KEY (StudentID, CourseID)
+   PRIMARY KEY (StudentID, CourseID),
+   FOREIGN KEY (`StudentID`) REFERENCES Students(StudentID),
+   FOREIGN KEY (`CourseID`) REFERENCES Courses(CourseID)
 );
  
 /* STUDENT INFORMATION */
@@ -69,6 +98,18 @@ VALUES (CourseID, 'Intro to Linear Algebra', 'MATH', '001', 'Spring', 2020);
 INSERT INTO `COURSES` (CourseID, CourseName, Department, CourseNumber, Semester, SchoolYear)
 VALUES (CourseID, 'Spanish I', 'SPAN', '001', 'Fall', 2019);
 
-/* ENROLLMENT INFOMATION */
-INSERT INTO `ENROLLMENT` (StudentID, CourseID)
-VALUES (StudentID, CourseID);
+
+
+/* DISTRIBUTION INFORMATION */
+INSERT INTO `DISTRIBUTION` (DistribID, CourseID, Type, Percent)
+VALUES (DistribID, CourseID, 'Participation', 10);
+INSERT INTO `DISTRIBUTION` (DistribID, CourseID, Type, Percent)
+VALUES (DistribID, CourseID, 'Homework', 20);
+INSERT INTO `DISTRIBUTION` (DistribID, CourseID, Type, Percent)
+VALUES (DistribID, CourseID, 'Tests', 50);
+INSERT INTO `DISTRIBUTION` (DistribID, CourseID, Type, Percent)
+VALUES (DistribID, CourseID, 'Projects', 20);
+
+/* ASSIGNMENT INFORMATION */
+INSERT INTO `ASSIGNMENTS` (AssignID, DistribID, Instance, MaxPoints)
+VALUES (AssignID, DistribID, 1, 100);
