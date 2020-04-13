@@ -16,7 +16,7 @@ order by CourseName asc;
 select AssignID, COURSES.CourseName, Instance, MaxPoints, DISTRIBUTION.Type
 from `ASSIGNMENTS`
 left join `DISTRIBUTION` on (DISTRIBUTION.distribID = ASSIGNMENTS.distribID)
-left join `COURSES` on (COURSES.CourseID = distribution.courseID);
+left join `COURSES` on (COURSES.CourseID = DISTRIBUTION.courseID);
 
 select * from `STUDENTGRADES`
 inner join `STUDENTS` on (STUDENTS.studentID = STUDENTGRADES.studentID)
