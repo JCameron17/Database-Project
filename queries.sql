@@ -1,23 +1,23 @@
-select * from `distribution`;
-select * from `courses`;
+select * from `DISTRIBUTION`;
+select * from `COURSES`;
 
 -- query: distribution by course
-select Courses.CourseName, Type, Percent  from `distribution`, `courses`
-where (courses.courseID = distribution.CourseID)
+select COURSES.CourseName, Type, Percent  from `DISTRIBUTION`, `COURSES`
+where (COURSES.courseID = DISTRIBUTION.CourseID)
 order by CourseName;
 
 -- query: student enrollments by course
-select LastName, FirstName, CourseName from `enrollment`
-inner join `students` on (Students.StudentID = Enrollment.StudentID)
-inner join `courses` on (Courses.CourseID = Enrollment.CourseID)
-Order by CourseName asc;
+select LastName, FirstName, CourseName from `ENROLLMENT`
+inner join `STUDENTS` on (STUDENTS.StudentID = ENROLLMENT.StudentID)
+inner join `COURSES` on (COURSES.CourseID = ENROLLMENT.CourseID)
+order by CourseName asc;
 
 -- query: assignments by distribution
-select AssignID, Courses.CourseName, Instance, MaxPoints, Distribution.Type
-from `assignments`
-left join `distribution` on (distribution.distribID = assignments.distribID)
-left join `courses` on (Courses.CourseID = distribution.courseID);
+select AssignID, COURSES.CourseName, Instance, MaxPoints, DISTRIBUTION.Type
+from `ASSIGNMENTS`
+left join `DISTRIBUTION` on (DISTRIBUTION.distribID = ASSIGNMENTS.distribID)
+left join `COURSES` on (COURSES.CourseID = distribution.courseID);
 
-select * from `studentgrades`
-inner join `students` on (students.studentID = studentgrades.studentID)
-inner join `assignments` on (assignments.assignID = studentgrades.assignID);
+select * from `STUDENTGRADES`
+inner join `STUDENTS` on (STUDENTS.studentID = STUDENTGRADES.studentID)
+inner join `ASSIGNMENTS` on (ASSIGNMENTS.assignID = STUDENTGRADES.assignID);
