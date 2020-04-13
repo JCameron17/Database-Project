@@ -82,12 +82,7 @@ VALUES (CourseID, 'Database Systems', 'CSCI', '432', 'Spring', 2020),
 (CourseID, 'Computer Science II', 'CSCI', '136', 'Spring', 2020),
 (CourseID, 'Software Engineering', 'CSCI', '375', 'Fall', 2019),
 (CourseID, 'Intro to Linear Algebra', 'MATH', '001', 'Spring', 2020),
-(CourseID, 'Spanish I', 'SPAN', '001', 'Fall', 2019),
-(CourseID, 'Education in Black America', 'AFRO', '122', 'Fall', 2019),
-(CourseID, 'Black Women in America', 'AFRO', '185', 'Fall', 2019),
-(CourseID, 'Classical Mythology', 'CLAS', '109', 'Fall', 2019),
-(CourseID, 'Intro Black Diaspora I', 'HIST', '005', 'Spring', 2020),
-(CourseID, 'Organic Chemistry II', 'CHEM', '142', 'Spring', 2020);
+(CourseID, 'Spanish I', 'SPAN', '001', 'Fall', 2019);
 
 /* DISTRIBUTION INFORMATION */
 INSERT INTO `DISTRIBUTION` (DistribID, CourseID, Type, Percent)
