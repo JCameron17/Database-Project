@@ -27,3 +27,18 @@ select a.AssignmentID, avg(s.POINTS), max(s.POINTS), min(s.POINTS)
 from ASSIGNMENTS a, SCORE s 
 where a.AssignmentID=2 AND s.AssignmentID=a.AssignmentID;
 
+-- query: compute the grade for a student
+SELECT DISTINCT pt.StudentID, st.FirstName, st.LastName, pt.CourseID,pt.AssignmentID, pt.CategoryName, pt.Points, pt.MaxPoints, pt.Percent
+FROM (
+    SELECT STUDENT.StudentID, AssignmentID, FirstName, LastName, CourseID, Points
+    FROM STUDENT JOIN ENROLLMENT JOIN SCORE
+    WHERE STUDENT.StudentID = ENROLLMENT.StudentID
+    AND STUDENT.StudentID = SCORE.StudentID) st
+JOIN
+(SELECT StudentID, CourseID, CategoryName, ASSIGNMENTS.AssignmentID, Points, ASSIGNMENTS.PointsPossible, DISTRIBUTION.Percent
+    FROM DISTRIBUTION JOIN ASSIGNMENTS JOIN STUDENTGRADES
+    WHERE DISTRIBUTION.DistributionID = ASSIGNMENTS.DistributionID
+    AND ASSIGNMENTS.AssignmentID = STUDENTGRADES.AssignmentID) pt
+WHERE st.AssignmentID = pt.AssignmentID
+AND st.Points = pt.Points AND st.StudentID=1234;
+
