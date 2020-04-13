@@ -96,7 +96,7 @@ VALUES (CourseID, 'Database Systems', 'CSCI', '432', 'Spring', 2020),
 
 /* DISTRIBUTION INFORMATION */
 INSERT INTO `DISTRIBUTION` (DistribID, CourseID, Type, Percent)
-(DistribID, CourseID, 'Participation', 10),
+VALUES (DistribID, CourseID, 'Participation', 10),
 (DistribID, CourseID, 'Homework', 20),
 (DistribID, CourseID, 'Tests', 50),
 (DistribID, CourseID, 'Projects', 20);
