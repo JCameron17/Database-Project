@@ -74,12 +74,7 @@ VALUES ('Harriet', 'Tubman', 'Computer Science'),
 ('Maya', 'Angelou', 'Computer Science'),
 ('Shirley', 'Chisholm', 'Computer Science'),
 ('Martin', 'King', 'Computer Science'),
-('Duke', 'Ellington', 'Computer Science'),
-('Mae', 'Jemison', 'Computer Science'),
-('Zora', 'Hurston', 'Computer Science'),
-('Toni', 'Morrison', 'Computer Science'),
-('Ida', 'Wells', 'Computer Science'), 
-('Alain', 'Locke', 'Computer Science');
+('Duke', 'Ellington', 'Computer Science');
 
 /* COURSE INFORMATION */
 INSERT INTO `COURSES` (CourseID, CourseName, Department, CourseNumber, Semester, SchoolYear)
@@ -107,8 +102,7 @@ VALUES (AssignID, DistribID, 1, 100);
 
 /* ASSIGNMENT INFORMATION */
 INSERT INTO `ENROLLMENT` (StudentID, CourseID)
-VALUES (1,2),(1,4),(1,7),(2,2),(2,6),(2,8),(3,1),(3,8),(3,9),
-(4,4),(4,5),(4,8),(5,1),(5,3),(5,10),(6,3),(6,6),(6,9),
-(7,3),(7,4),(7,8),(8,2),(9,5),(9,6),(9,10),
-(10,3),(10,4),(10,5),(11,1),(11,7),(11,9),(12,2),(12,5),(12,10),
-(13,2),(13,6),(13,7),(14,1),(14,7),(14,8),(15,2),(15,5),(15,10);
+VALUES (1,2),(1,4),(1,3),(2,2),(2,3),(2,1),(3,1),(3,4),(3,2),
+(4,4),(4,5),(4,1),(5,1),(5,3),(5,2),(6,5),(6,4),(6,1),
+(7,3),(7,4),(7,5),(8,2),(8,3),(8,5),(9,5),(9,1),(9,2),
+(10,3),(10,4),(10,5);
