@@ -69,11 +69,31 @@ CREATE TABLE `DISTRIBUTION` (
 
 /* DISTRIBUTION INFORMATION */
 INSERT INTO `DISTRIBUTION` (DistribID, CourseID, Type, Percent)
-VALUES (DistribID, 1, 'Participation', 50),(DistribID, 1, 'Homework', 10),(DistribID, 1, 'Tests', 20),(DistribID, 1, 'Projects', 20),
-(DistribID, 2, 'Participation', 30),(DistribID, 2, 'Homework', 30),(DistribID, 2, 'Tests', 20),(DistribID, 2, 'Projects', 20),
-(DistribID, 3, 'Participation', 10),(DistribID, 3, 'Homework', 30),(DistribID, 3, 'Tests', 20),(DistribID, 3, 'Projects', 40),
-(DistribID, 4, 'Participation', 15),(DistribID, 4, 'Homework', 35),(DistribID, 4, 'Tests', 30),(DistribID, 4, 'Projects', 20),
-(DistribID, 5, 'Participation', 10),(DistribID, 5, 'Homework', 20),(DistribID, 5, 'Tests', 40),(DistribID, 5, 'Projects', 30);
+VALUES (DistribID, CourseID, 'Participation', 10),
+(DistribID, CourseID, 'Homework', 20),
+(DistribID, CourseID, 'Tests', 50),
+(DistribID, CourseID, 'Projects', 20);
+
+INSERT INTO `DISTRIBUTION` VALUES(DistribID, 1, 'Participation', 50);
+INSERT INTO `DISTRIBUTION` VALUES(DistribID, 1, 'Homework', 10);
+INSERT INTO `DISTRIBUTION` VALUES(DistribID, 1, 'Tests', 20);
+INSERT INTO `DISTRIBUTION` VALUES(DistribID, 1, 'Projects', 20);
+INSERT INTO `DISTRIBUTION` VALUES(DistribID, 2, 'Participation', 30);
+INSERT INTO `DISTRIBUTION` VALUES(DistribID, 2, 'Homework', 30);
+INSERT INTO `DISTRIBUTION` VALUES(DistribID, 2, 'Tests', 20);
+INSERT INTO `DISTRIBUTION` VALUES(DistribID, 2, 'Projects', 20);
+INSERT INTO `DISTRIBUTION` VALUES(DistribID, 3, 'Participation', 10);
+INSERT INTO `DISTRIBUTION` VALUES(DistribID, 3, 'Homework', 30);
+INSERT INTO `DISTRIBUTION` VALUES(DistribID, 3, 'Tests', 20);
+INSERT INTO `DISTRIBUTION` VALUES(DistribID, 3, 'Projects', 40);
+INSERT INTO `DISTRIBUTION` VALUES(DistribID, 4, 'Participation', 15);
+INSERT INTO `DISTRIBUTION` VALUES(DistribID, 4, 'Homework', 35);
+INSERT INTO `DISTRIBUTION` VALUES(DistribID, 4, 'Tests', 30);
+INSERT INTO `DISTRIBUTION` VALUES(DistribID, 4, 'Projects', 20);
+INSERT INTO `DISTRIBUTION` VALUES(DistribID, 5, 'Participation', 10);
+INSERT INTO `DISTRIBUTION` VALUES(DistribID, 5, 'Homework', 20);
+INSERT INTO `DISTRIBUTION` VALUES(DistribID, 5, 'Tests', 40);
+INSERT INTO `DISTRIBUTION` VALUES(DistribID, 5, 'Projects', 30);
 
 /* ASSIGNMENT TABLE CREATION */
 DROP TABLE IF EXISTS `ASSIGNMENTS`;
@@ -88,7 +108,9 @@ CREATE TABLE `ASSIGNMENTS` (
 
 /* ASSIGNMENT INFORMATION */
 INSERT INTO `ASSIGNMENTS` (AssignID, DistribID, Instance, MaxPoints)
-VALUES (AssignID, DistribID, 1, 100)
+VALUES (AssignID, DistribID, 1, 100);
+
+INSERT INTO `ASSIGNMENTS` VALUES(AssignID, 1, 1, 100),
 (AssignID, 2, 1, 100),
 (AssignID, 3, 1, 100),
 (AssignID, 4, 1, 100),
@@ -115,7 +137,24 @@ DROP TABLE IF EXISTS `STUDENTGRADES`;
 CREATE TABLE `STUDENTGRADES` (
     `StudentID` int(11) NOT NULL,
     `AssignID` int(11) NOT NULL,
+    `POINTS` int(11) DEFAULT 0 NOT NULL,
     PRIMARY KEY (StudentID, AssignID),
     FOREIGN KEY (`StudentID`) REFERENCES STUDENTS(StudentID),
     FOREIGN KEY (`AssignID`) REFERENCES ASSIGNMENTS(AssignID)
 );
+
+INSERT INTO `STUDENTGRADES` VALUES (1, 5, 85), (1, 6, 90), (1, 7, 90), (1, 8, 90),
+(1, 9, 71), (1, 10, 88), (1, 11, 95), (1, 12, 76), (1, 13, 68), (1, 14, 87), (1, 15, 97), (1, 16, 95), 
+
+(2, 1, 87), (2, 2, 78), (2, 3, 75), (2, 4, 90), (2, 5, 94), (2, 6, 74), (2, 7, 93), (2, 8, 83), (2, 9, 93), (2, 10, 74), 
+(2, 11, 92), (2, 12, 90),
+
+(3, 1, 94), (3, 2, 92), (3, 3, 91), (3, 4, 90), (3, 5, 93), (3, 6, 82), (3, 7, 95), (3, 8, 83), (3, 13, 73),
+(3, 14, 90), (3, 15, 90), (3, 16, 90),
+
+(4, 1, 74), (4, 2, 83), (4, 3, 90), (4, 4, 90), (4, 13, 90), (4, 14, 90), (4, 15, 90), (4, 16, 90), (4, 17, 90),
+(4, 18, 90), (4, 19, 90), (4, 20, 90),
+
+(5, 1, 73), (5, 2, 90), (5, 3, 94), (5, 4, 86), (5, 5, 83), (5, 6, 90), (5, 7, 92), (5, 8, 76), (5, 9, 94),
+(5, 10, 83), (5, 11, 83), (5, 12, 74),
+
