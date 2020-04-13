@@ -6,10 +6,11 @@ select Courses.CourseName, Type, Percent  from `distribution`, `courses`
 where (courses.courseID = distribution.CourseID)
 order by CourseName;
 
-
-select * from `enrollment`
+-- query: student enrollments by course
+select LastName, FirstName, CourseName from `enrollment`
 inner join `students` on (Students.StudentID = Enrollment.StudentID)
-inner join `courses` on (Courses.CourseID = Enrollment.CourseID);
+inner join `courses` on (Courses.CourseID = Enrollment.CourseID)
+Order by CourseName asc;
 
 -- query: assignments by distribution
 select AssignID, Courses.CourseName, Instance, MaxPoints, Distribution.Type
