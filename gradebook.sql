@@ -53,6 +53,15 @@ CREATE TABLE `ASSIGNMENTS` (
    FOREIGN KEY (`StudentID`) REFERENCES Students(StudentID),
    FOREIGN KEY (`CourseID`) REFERENCES Courses(CourseID)
 );
+
+ DROP TABLE IF EXISTS `STUDENTGRADES`;
+ CREATE TABLE `STUDENTGRADES` (
+   `StudentID` int(11) NOT NULL,
+   `AssignID` int(11) NOT NULL,
+   PRIMARY KEY (StudentID, AssignID),
+   FOREIGN KEY (`StudentID`) REFERENCES Students(StudentID),
+   FOREIGN KEY (`AssignID`) REFERENCES Assignments(AssignID)
+);
  
 /* STUDENT INFORMATION */
 INSERT INTO `STUDENTS` (FirstName, LastName, Major)
