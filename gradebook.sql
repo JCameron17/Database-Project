@@ -65,60 +65,50 @@ CREATE TABLE `ASSIGNMENTS` (
  
 /* STUDENT INFORMATION */
 INSERT INTO `STUDENTS` (FirstName, LastName, Major)
-VALUES ('Harriet', 'Tubman', 'Computer Science');
-INSERT INTO `STUDENTS` (FirstName, LastName, Major)
-VALUES ('Langston', 'Hughes', 'Computer Science');
-INSERT INTO `STUDENTS` (FirstName, LastName, Major)
-VALUES ('Fredrick', 'Douglass', 'Computer Science');
-INSERT INTO `STUDENTS` (FirstName, LastName, Major)
-VALUES ('Michael', 'Jackson', 'Computer Science');
-INSERT INTO `STUDENTS` (FirstName, LastName, Major)
-VALUES ('Janet', 'Jackson', 'Computer Science');
-INSERT INTO `STUDENTS` (FirstName, LastName, Major)
-VALUES ('George', 'Carver', 'Computer Science');
-INSERT INTO `STUDENTS` (FirstName, LastName, Major)
-VALUES ('Maya', 'Angelou', 'Computer Science');
-INSERT INTO `STUDENTS` (FirstName, LastName, Major)
-VALUES ('Shirley', 'Chisholm', 'Computer Science');
-INSERT INTO `STUDENTS` (FirstName, LastName, Major)
-VALUES ('Martin', 'King', 'Computer Science');
-INSERT INTO `STUDENTS` (FirstName, LastName, Major)
-VALUES ('Duke', 'Ellington', 'Computer Science');
-INSERT INTO `STUDENTS` (FirstName, LastName, Major)
-VALUES ('Mae', 'Jemison', 'Computer Science');
-INSERT INTO `STUDENTS` (FirstName, LastName, Major)
-VALUES ('Zora', 'Hurston', 'Computer Science');
-INSERT INTO `STUDENTS` (FirstName, LastName, Major)
-VALUES ('Toni', 'Morrison', 'Computer Science');
-INSERT INTO `STUDENTS` (FirstName, LastName, Major)
-VALUES ('Ida', 'Wells', 'Computer Science');
-INSERT INTO `STUDENTS` (FirstName, LastName, Major)
-VALUES ('Alain', 'Locke', 'Computer Science');
+VALUES ('Harriet', 'Tubman', 'Computer Science'),
+('Langston', 'Hughes', 'Computer Science'),
+('Fredrick', 'Douglass', 'Computer Science'),
+('Michael', 'Jackson', 'Computer Science'),
+('Janet', 'Jackson', 'Computer Science'),
+('George', 'Carver', 'Computer Science'),
+('Maya', 'Angelou', 'Computer Science'),
+('Shirley', 'Chisholm', 'Computer Science'),
+('Martin', 'King', 'Computer Science'),
+('Duke', 'Ellington', 'Computer Science'),
+('Mae', 'Jemison', 'Computer Science'),
+('Zora', 'Hurston', 'Computer Science'),
+('Toni', 'Morrison', 'Computer Science'),
+('Ida', 'Wells', 'Computer Science'), 
+('Alain', 'Locke', 'Computer Science');
 
 /* COURSE INFORMATION */
 INSERT INTO `COURSES` (CourseID, CourseName, Department, CourseNumber, Semester, SchoolYear)
-VALUES (CourseID, 'Database Systems', 'CSCI', '432', 'Spring', 2020);
-INSERT INTO `COURSES` (CourseID, CourseName, Department, CourseNumber, Semester, SchoolYear)
-VALUES (CourseID, 'Computer Science II', 'CSCI', '136', 'Spring', 2020);
-INSERT INTO `COURSES` (CourseID, CourseName, Department, CourseNumber, Semester, SchoolYear)
-VALUES (CourseID, 'Software Engineering', 'CSCI', '375', 'Fall', 2019);
-INSERT INTO `COURSES` (CourseID, CourseName, Department, CourseNumber, Semester, SchoolYear)
-VALUES (CourseID, 'Intro to Linear Algebra', 'MATH', '001', 'Spring', 2020);
-INSERT INTO `COURSES` (CourseID, CourseName, Department, CourseNumber, Semester, SchoolYear)
-VALUES (CourseID, 'Spanish I', 'SPAN', '001', 'Fall', 2019);
-
-
+VALUES (CourseID, 'Database Systems', 'CSCI', '432', 'Spring', 2020),
+(CourseID, 'Computer Science II', 'CSCI', '136', 'Spring', 2020),
+(CourseID, 'Software Engineering', 'CSCI', '375', 'Fall', 2019),
+(CourseID, 'Intro to Linear Algebra', 'MATH', '001', 'Spring', 2020),
+(CourseID, 'Spanish I', 'SPAN', '001', 'Fall', 2019),
+(CourseID, 'Education in Black America', 'AFRO', '122', 'Fall', 2019),
+(CourseID, 'Black Women in America', 'AFRO', '185', 'Fall', 2019),
+(CourseID, 'Classical Mythology', 'CLAS', '109', 'Fall', 2019),
+(CourseID, 'Intro Black Diaspora I', 'HIST', '005', 'Spring', 2020),
+(CourseID, 'Organic Chemistry II', 'CHEM', '142', 'Spring', 2020);
 
 /* DISTRIBUTION INFORMATION */
 INSERT INTO `DISTRIBUTION` (DistribID, CourseID, Type, Percent)
-VALUES (DistribID, CourseID, 'Participation', 10);
-INSERT INTO `DISTRIBUTION` (DistribID, CourseID, Type, Percent)
-VALUES (DistribID, CourseID, 'Homework', 20);
-INSERT INTO `DISTRIBUTION` (DistribID, CourseID, Type, Percent)
-VALUES (DistribID, CourseID, 'Tests', 50);
-INSERT INTO `DISTRIBUTION` (DistribID, CourseID, Type, Percent)
-VALUES (DistribID, CourseID, 'Projects', 20);
+(DistribID, CourseID, 'Participation', 10),
+(DistribID, CourseID, 'Homework', 20),
+(DistribID, CourseID, 'Tests', 50),
+(DistribID, CourseID, 'Projects', 20);
 
 /* ASSIGNMENT INFORMATION */
 INSERT INTO `ASSIGNMENTS` (AssignID, DistribID, Instance, MaxPoints)
 VALUES (AssignID, DistribID, 1, 100);
+
+/* ASSIGNMENT INFORMATION */
+INSERT INTO `ENROLLMENT` (StudentID, CourseID)
+VALUES (1,2),(1,4),(1,7),(2,2),(2,6),(2,8),(3,1),(3,8),(3,9),
+(4,4),(4,5),(4,8),(5,1),(5,3),(5,10),(6,3),(6,6),(6,9),
+(7,3),(7,4),(7,8),(8,2),(9,5),(9,6),(9,10),
+(10,3),(10,4),(10,5),(11,1),(11,7),(11,9),(12,2),(12,5),(12,10),
+(13,2),(13,6),(13,7),(14,1),(14,7),(14,8),(15,2),(15,5),(15,10);
