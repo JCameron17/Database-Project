@@ -18,14 +18,16 @@ from `ASSIGNMENTS`
 left join `DISTRIBUTION` on (DISTRIBUTION.distribID = ASSIGNMENTS.distribID)
 left join `COURSES` on (COURSES.CourseID = DISTRIBUTION.courseID);
 
-select * from `STUDENTGRADES`
-inner join `STUDENTS` on (STUDENTS.studentID = STUDENTGRADES.studentID)
-inner join `ASSIGNMENTS` on (ASSIGNMENTS.assignID = STUDENTGRADES.assignID);
+-- query: student grades by assignment
+select STUDENTGRADES.AssignID, STUDENTGRADES.StudentID, FirstName, LastName, Points, MaxPoints, Instance
+from `STUDENTGRADES`
+right JOIN `ASSIGNMENTS` ON (ASSIGNMENTS.AssignID = STUDENTGRADES.AssignID)
+LEFT JOIN `STUDENTS` ON (STUDENTS.StudentID = STUDENTGRADES.StudentID);
 
 -- query: Compute the average/highest/lowest score of an assignment
-select a.AssignmentID, avg(s.POINTS), max(s.POINTS), min(s.POINTS) 
-from ASSIGNMENTS a, SCORE s 
-where a.AssignmentID=2 AND s.AssignmentID=a.AssignmentID;
+select a.AssignID, a.MaxPoints, avg(s.POINTS) AS PointAVG, max(s.POINTS) AS BestScore, min(s.POINTS) AS WorstScore
+from ASSIGNMENTS a, STUDENTGRADES s 
+where a.AssignID=2 AND s.AssignID=a.AssignID;
 
 -- query: compute the grade for a student
 SELECT DISTINCT pt.StudentID, st.FirstName, st.LastName, pt.CourseID,pt.AssignmentID, pt.CategoryName, pt.Points, pt.MaxPoints, pt.Percent
