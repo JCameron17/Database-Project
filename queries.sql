@@ -38,7 +38,7 @@ inner join `ASSIGNMENTS` on (ASSIGNMENTS.AssignID = SCORE.AssignID)
 inner join `COURSES` on (COURSES.CourseID = ENROLLMENT.CourseID) where (COURSES.CourseID = 1)
 order by AssignID, LastName asc;
 
--- query: compute the grade for a student
+-- #11 query: compute the grade for a student
 SELECT DISTINCT pt.StudentID, st.FirstName, st.LastName, pt.CourseID,pt.AssignmentID, pt.CategoryName, pt.Points, pt.MaxPoints, pt.Percent
 FROM (
     SELECT STUDENT.StudentID, AssignmentID, FirstName, LastName, CourseID, Points
