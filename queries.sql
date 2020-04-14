@@ -55,20 +55,20 @@ where DistribID = 3;
 SELECT * FROM DISTRIBUTION;
 
 -- #9 query: Add 2 points to the score of each student on an assignment
-UPDATE STUDENTGRADES SET Points = Points + 2
+UPDATE SCORE SET Points = Points + 2
 WHERE AssignID = 4;
 -- updated #9 table
-SELECT * FROM `STUDENTGRADES`
-LEFT JOIN `ASSIGNMENTS` ON (STUDENTGRADES.AssignID = ASSIGNMENTS.AssignID) WHERE (STUDENTGRADES.AssignID = 4)
+SELECT * FROM `SCORE`
+LEFT JOIN `ASSIGNMENTS` ON (SCORE.AssignID = ASSIGNMENTS.AssignID) WHERE (SCORE.AssignID = 4)
 order by StudentID;
 
 -- #10 query: Add 2 points just to those students whose last name contains a ‘Q’
-UPDATE STUDENTGRADES 
-JOIN `STUDENTS` ON (STUDENTGRADES.StudentID = STUDENTS.StudentID)
+UPDATE SCORE
+JOIN `STUDENTS` ON (SCORE.StudentID = STUDENTS.StudentID)
 SET Points = Points + 2
 WHERE (STUDENTS.LastName LIKE 'Q%') and (STUDENTS.StudentID = 6);
 -- update #10 table
-SELECT Points FROM `STUDENTGRADES`
+SELECT Points FROM `SCORE`
 WHERE (StudentID = 6);
 --
 
@@ -89,7 +89,7 @@ WHERE (StudentID = 6);
 
 -- student final grade for Harriet Tubman in Software Engineering
 Select SUM(((sg.Points * 100) / a.MaxPoints) * (Percent / 100)) AS FINALGRADE
-FROM DISTRIBUTION d, ASSIGNMENTS a, STUDENTGRADES sg
+FROM DISTRIBUTION d, ASSIGNMENTS a, SCORE sg
 WHERE d.DistribID = a.DistribID
 AND sg.AssignID = a.AssignID
 AND d.CourseID = 3
