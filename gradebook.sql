@@ -69,31 +69,11 @@ CREATE TABLE `DISTRIBUTION` (
 
 /* DISTRIBUTION INFORMATION */
 INSERT INTO `DISTRIBUTION` (DistribID, CourseID, Type, Percent)
-VALUES (DistribID, CourseID, 'Participation', 10),
-(DistribID, CourseID, 'Homework', 20),
-(DistribID, CourseID, 'Tests', 50),
-(DistribID, CourseID, 'Projects', 20);
-
-INSERT INTO `DISTRIBUTION` VALUES(DistribID, 1, 'Participation', 50);
-INSERT INTO `DISTRIBUTION` VALUES(DistribID, 1, 'Homework', 10);
-INSERT INTO `DISTRIBUTION` VALUES(DistribID, 1, 'Tests', 20);
-INSERT INTO `DISTRIBUTION` VALUES(DistribID, 1, 'Projects', 20);
-INSERT INTO `DISTRIBUTION` VALUES(DistribID, 2, 'Participation', 30);
-INSERT INTO `DISTRIBUTION` VALUES(DistribID, 2, 'Homework', 30);
-INSERT INTO `DISTRIBUTION` VALUES(DistribID, 2, 'Tests', 20);
-INSERT INTO `DISTRIBUTION` VALUES(DistribID, 2, 'Projects', 20);
-INSERT INTO `DISTRIBUTION` VALUES(DistribID, 3, 'Participation', 10);
-INSERT INTO `DISTRIBUTION` VALUES(DistribID, 3, 'Homework', 30);
-INSERT INTO `DISTRIBUTION` VALUES(DistribID, 3, 'Tests', 20);
-INSERT INTO `DISTRIBUTION` VALUES(DistribID, 3, 'Projects', 40);
-INSERT INTO `DISTRIBUTION` VALUES(DistribID, 4, 'Participation', 15);
-INSERT INTO `DISTRIBUTION` VALUES(DistribID, 4, 'Homework', 35);
-INSERT INTO `DISTRIBUTION` VALUES(DistribID, 4, 'Tests', 30);
-INSERT INTO `DISTRIBUTION` VALUES(DistribID, 4, 'Projects', 20);
-INSERT INTO `DISTRIBUTION` VALUES(DistribID, 5, 'Participation', 10);
-INSERT INTO `DISTRIBUTION` VALUES(DistribID, 5, 'Homework', 20);
-INSERT INTO `DISTRIBUTION` VALUES(DistribID, 5, 'Tests', 40);
-INSERT INTO `DISTRIBUTION` VALUES(DistribID, 5, 'Projects', 30);
+VALUES (DistribID, 1, 'Participation', 50),(DistribID, 1, 'Homework', 10),(DistribID, 1, 'Tests', 20),(DistribID, 1, 'Projects', 20),
+(DistribID, 2, 'Participation', 30),(DistribID, 2, 'Homework', 30),(DistribID, 2, 'Tests', 20),(DistribID, 2, 'Projects', 20),
+(DistribID, 3, 'Participation', 10),(DistribID, 3, 'Homework', 30),(DistribID, 3, 'Tests', 20),(DistribID, 3, 'Projects', 40),
+(DistribID, 4, 'Participation', 15),(DistribID, 4, 'Homework', 35),(DistribID, 4, 'Tests', 30),(DistribID, 4, 'Projects', 20),
+(DistribID, 5, 'Participation', 10),(DistribID, 5, 'Homework', 20),(DistribID, 5, 'Tests', 40),(DistribID, 5, 'Projects', 30);
 
 /* ASSIGNMENT TABLE CREATION */
 DROP TABLE IF EXISTS `ASSIGNMENTS`;
@@ -105,71 +85,32 @@ CREATE TABLE `ASSIGNMENTS` (
   PRIMARY KEY (`AssignID`),
   FOREIGN KEY (`DistribID`) REFERENCES DISTRIBUTION(DistribID)
 );
-
 /* ASSIGNMENT INFORMATION */
 INSERT INTO `ASSIGNMENTS` (AssignID, DistribID, Instance, MaxPoints)
-VALUES (AssignID, DistribID, 1, 100);
-
-INSERT INTO `ASSIGNMENTS` VALUES(AssignID, 1, 1, 100),
-(AssignID, 2, 1, 100),
-(AssignID, 3, 1, 100),
-(AssignID, 4, 1, 100),
-(AssignID, 5, 1, 100),
-(AssignID, 6, 1, 100),
-(AssignID, 7, 1, 100),
-(AssignID, 8, 1, 100),
-(AssignID, 9, 1, 100),
-(AssignID, 10, 1, 100),
-(AssignID, 11, 1, 100),
-(AssignID, 12, 1, 100),
-(AssignID, 13, 1, 100),
-(AssignID, 14, 1, 100),
-(AssignID, 15, 1, 100),
-(AssignID, 16, 1, 100),
-(AssignID, 17, 1, 100),
-(AssignID, 18, 1, 100),
-(AssignID, 19, 1, 100),
-(AssignID, 20, 1, 100);
-
+VALUES (AssignID, 1, 1, 100),(AssignID, 2, 3, 100),(AssignID, 3, 2, 100),(AssignID, 4, 1, 100),
+(AssignID, 5, 1, 100),(AssignID, 6, 5, 100),(AssignID, 7, 2, 100),(AssignID, 8, 2, 100),
+(AssignID, 9, 1, 100),(AssignID, 10, 2, 100),(AssignID, 11, 1, 100),(AssignID, 12, 1, 100),
+(AssignID, 13, 1, 100),(AssignID, 14, 1, 100),(AssignID, 15, 1, 100),(AssignID, 16, 2, 100),
+(AssignID, 17, 1, 100),(AssignID, 18, 1, 100),(AssignID, 19, 1, 100),(AssignID, 20, 1, 100);
 
 /* STUDENTGRADES TABLE CREATION */
 DROP TABLE IF EXISTS `STUDENTGRADES`;
 CREATE TABLE `STUDENTGRADES` (
     `StudentID` int(11) NOT NULL,
     `AssignID` int(11) NOT NULL,
-    `POINTS` int(11) DEFAULT 0 NOT NULL,
+  	`Points` int(11) DEFAULT 0 NOT NULL,
     PRIMARY KEY (StudentID, AssignID),
     FOREIGN KEY (`StudentID`) REFERENCES STUDENTS(StudentID),
     FOREIGN KEY (`AssignID`) REFERENCES ASSIGNMENTS(AssignID)
 );
 
-INSERT INTO `STUDENTGRADES` VALUES (1, 5, 85), (1, 6, 90), (1, 7, 90), (1, 8, 90),
-(1, 9, 71), (1, 10, 88), (1, 11, 95), (1, 12, 76), (1, 13, 68), (1, 14, 87), (1, 15, 97), (1, 16, 95), 
-
-(2, 1, 87), (2, 2, 78), (2, 3, 75), (2, 4, 90), (2, 5, 94), (2, 6, 74), (2, 7, 93), (2, 8, 83), (2, 9, 93), (2, 10, 74), 
-(2, 11, 92), (2, 12, 90),
-
-(3, 1, 94), (3, 2, 92), (3, 3, 91), (3, 4, 90), (3, 5, 93), (3, 6, 82), (3, 7, 95), (3, 8, 83), (3, 13, 73),
-(3, 14, 90), (3, 15, 90), (3, 16, 90),
-
-(4, 1, 74), (4, 2, 83), (4, 3, 90), (4, 4, 96), (4, 13, 78), (4, 14, 89), (4, 15, 76), (4, 16, 50), (4, 17, 97),
-(4, 18, 76), (4, 19, 98), (4, 20, 94),
-
-(5, 1, 73), (5, 2, 90), (5, 3, 94), (5, 4, 86), (5, 5, 83), (5, 6, 90), (5, 7, 92), (5, 8, 76), (5, 9, 94),
-(5, 10, 83), (5, 11, 83), (5, 12, 74),
-
-(6, 1, 77), (6, 2, 88), (6, 3, 95), (6, 4, 93), (6, 13, 93), (6, 14, 97), (6, 15, 92), (6, 16, 88), (6, 17, 86),
-(6, 18, 85), (6, 19, 93), (6, 20, 94),
-
-(7, 9, 88), (7, 10, 94), (7, 11, 76), (7, 12, 89), (7, 13, 93), (7, 14, 92), (7, 15, 84), (7, 16, 73), (7, 17, 98),
-(7, 18, 89), (7, 19, 93), (7, 20, 89),
-
-(8, 5, 89), (8, 6, 93), (8, 7, 83), (8, 8, 92), (8, 9, 82), (8, 10, 67), (8, 11, 93), (8, 12, 93), (8, 17, 85),
-(8, 18, 89), (8, 19, 83), (8, 20, 89),
-
-(9, 1, 89), (9, 2, 83), (9, 3, 84), (9, 4, 93), (9, 5, 73), (9, 6, 72), (9, 7, 74), (9, 8, 84), (9, 17, 72),
-(9, 18, 93), (9, 19, 88), (9, 20, 83),
-
-(10, 9, 82), (10, 10, 92), (10, 11, 74), (10, 12, 84), (10, 13, 98), (10, 14, 97), (10, 15, 81), (10, 16, 73), (10, 17, 99),
-(10, 18, 81), (10, 19, 97), (10, 20, 85);
+INSERT INTO `STUDENTGRADES` (StudentID, AssignID, Points)
+VALUES (1, 6, 90), (1, 7, 90), (1, 8, 90),(1, 9, 71), (1, 10, 88), (1, 11, 95), (1, 12, 76), (1, 13, 68), (1, 14, 87), (1, 15, 97), (1, 16, 95),
+(2, 1, 87), (2, 2, 78), (2, 3, 75), (2, 4, 90), (2, 5, 94), (2, 6, 74), (2, 7, 93), (2, 8, 83), (2, 9, 93), (2, 10, 74), (2, 11, 92), (2, 12, 90),
+(3, 1, 94), (3, 2, 92), (3, 3, 91), (3, 4, 90), (3, 5, 93), (3, 6, 82), (3, 7, 95), (3, 8, 83), (3, 13, 73), (3, 14, 90), (3, 15, 90), (3, 16, 90),
+(4, 1, 74), (4, 2, 83), (4, 3, 90), (4, 4, 96), (4, 13, 78), (4, 14, 89), (4, 15, 76), (4, 16, 50), (4, 17, 97), (4, 18, 76), (4, 19, 98), (4, 20, 94),
+(5, 1, 73), (5, 2, 90), (5, 3, 94), (5, 4, 86), (5, 5, 83), (5, 6, 90), (5, 7, 92), (5, 8, 76), (5, 9, 94), (5, 10, 83), (5, 11, 83), (5, 12, 74),
+(6, 1, 77), (6, 2, 88), (6, 3, 95), (6, 4, 93), (6, 13, 93), (6, 14, 97), (6, 15, 92), (6, 16, 88), (6, 17, 86), (6, 18, 85), (6, 19, 93), (6, 20, 94),
+(7, 9, 88), (7, 10, 94), (7, 11, 76), (7, 12, 89), (7, 13, 93), (7, 14, 92), (7, 15, 84), (7, 16, 73), (7, 17, 98), (7, 18, 89), (7, 19, 93), (7, 20, 89), (8, 5, 89), (8, 6, 93), (8, 7, 83), (8, 8, 92), (8, 9, 82), (8, 10, 67), (8, 11, 93), (8, 12, 93), (8, 17, 85), (8, 18, 89), (8, 19, 83), (8, 20, 89),
+(9, 1, 89), (9, 2, 83), (9, 3, 84), (9, 4, 93), (9, 5, 73), (9, 6, 72), (9, 7, 74), (9, 8, 84), (9, 17, 72), (9, 18, 93), (9, 19, 88), (9, 20, 83), (10, 9, 82), (10, 10, 92), (10, 11, 74), (10, 12, 84), (10, 13, 98), (10, 14, 97), (10, 15, 81), (10, 16, 73), (10, 17, 99), (10, 18, 81), (10, 19, 97), (10, 20, 85);
 
