@@ -80,3 +80,42 @@ WHERE d.DistribID = a.DistribID
 AND sg.AssignID = a.AssignID
 AND d.CourseID = 3
 AND StudentID = 1;
+
+-- #12 query: Compute the grade for a student, where the lowest score for a given category is dropped
+Select SUM(((sg.Points * 100) / a.MaxPoints) * (Percent / 100)) AS FINALGRADE
+FROM DISTRIBUTION d, ASSIGNMENTS a, SCORE sg
+WHERE d.DistribID = a.DistribID
+AND sg.AssignID = a.AssignID
+AND d.CourseID = 3
+AND StudentID = 1;                
+
+SELECT min(s.Points) as WorstGrade FROM SCORE s
+left join `ASSIGNMENTS` a on (s.AssignID = a.AssignID)
+left join `DISTRIBUTION` d on (d.distribID = a.distribID)
+left join `COURSES` c on (c.CourseID = d.courseID)
+WHERE  s.StudentID = 1
+and d.CourseID = 3
+order by s.StudentID asc;
+SELECT * FROM SCORE where StudentID = 1;
+
+Delete from `SCORE` 
+where StudentID = 1 and AssignID = 9;
+
+Select SUM(((sg.Points * 100) / a.MaxPoints) * (Percent / 100)) AS FINALGRADE
+FROM DISTRIBUTION d, ASSIGNMENTS a, SCORE sg
+WHERE d.DistribID = a.DistribID
+AND sg.AssignID = a.AssignID
+AND d.CourseID = 3
+AND StudentID = 1;
+                                                
+SELECT s.AssignID, s.StudentID,d.CourseID, s.Points  FROM SCORE s
+left join `ASSIGNMENTS` a on (s.AssignID = a.AssignID)
+left join `DISTRIBUTION` d on (d.distribID = a.distribID)
+left join `COURSES` c on (c.CourseID = d.courseID)
+WHERE  s.StudentID = 1
+and d.CourseID = 3
+order by s.StudentID asc;
+
+                                                
+                                                
+
