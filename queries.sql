@@ -6,12 +6,6 @@ select COURSES.CourseName, Type, Percent  from `DISTRIBUTION`, `COURSES`
 where (COURSES.courseID = DISTRIBUTION.CourseID)
 order by CourseName;
 
--- query: student enrollments by course
-select LastName, FirstName, CourseName from `ENROLLMENT`
-inner join `STUDENTS` on (STUDENTS.StudentID = ENROLLMENT.StudentID)
-inner join `COURSES` on (COURSES.CourseID = ENROLLMENT.CourseID)
-order by CourseName asc;
-
 -- query: assignments by distribution
 select AssignID, COURSES.CourseName, Instance, MaxPoints, DISTRIBUTION.Type
 from `ASSIGNMENTS`
@@ -24,10 +18,17 @@ from `STUDENTGRADES`
 right JOIN `ASSIGNMENTS` ON (ASSIGNMENTS.AssignID = STUDENTGRADES.AssignID)
 LEFT JOIN `STUDENTS` ON (STUDENTS.StudentID = STUDENTGRADES.StudentID);
 
--- query: Compute the average/highest/lowest score of an assignment
+-- #4 query: Compute the average/highest/lowest score of an assignment
 select a.AssignID, a.MaxPoints, avg(s.POINTS) AS PointAVG, max(s.POINTS) AS BestScore, min(s.POINTS) AS WorstScore
 from ASSIGNMENTS a, STUDENTGRADES s 
 where a.AssignID=2 AND s.AssignID=a.AssignID;
+
+-- #5 query: student enrollments by course
+select LastName, FirstName, CourseName from `ENROLLMENT`
+inner join `STUDENTS` on (STUDENTS.StudentID = ENROLLMENT.StudentID)
+inner join `COURSES` on (COURSES.CourseID = ENROLLMENT.CourseID) where (COURSES.CourseID = 2)
+-- feel free to change the CourseID to get the student list for the other courses
+order by LastName asc;
 
 -- query: compute the grade for a student
 SELECT DISTINCT pt.StudentID, st.FirstName, st.LastName, pt.CourseID,pt.AssignmentID, pt.CategoryName, pt.Points, pt.MaxPoints, pt.Percent
