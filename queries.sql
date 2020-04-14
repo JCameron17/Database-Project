@@ -41,6 +41,8 @@ order by AssignID, LastName asc;
 -- #7 query: Add an assignment to a course
 insert into ASSIGNMENTS(DistribID, Instance, MaxPoints)
 VALUES (1, 3, 100);
+-- updated #7 table
+SELECT * FROM ASSIGNMENTS;
 
 -- #8 query: Change the percentages of the categories for a course
 -- feel free to change Percent to set new distribution
@@ -49,6 +51,26 @@ update DISTRIBUTION set Percent = 30
 where DistribID = 1;
 update DISTRIBUTION set Percent = 40
 where DistribID = 3;
+-- updated #8 table
+SELECT * FROM DISTRIBUTION;
+
+-- #9 query: Add 2 points to the score of each student on an assignment
+UPDATE STUDENTGRADES SET Points = Points + 2
+WHERE AssignID = 4;
+-- updated #9 table
+SELECT * FROM `STUDENTGRADES`
+LEFT JOIN `ASSIGNMENTS` ON (STUDENTGRADES.AssignID = ASSIGNMENTS.AssignID) WHERE (STUDENTGRADES.AssignID = 4)
+order by StudentID;
+
+-- #10 query: Add 2 points just to those students whose last name contains a ‘Q’
+UPDATE STUDENTGRADES 
+JOIN `STUDENTS` ON (STUDENTGRADES.StudentID = STUDENTS.StudentID)
+SET Points = Points + 2
+WHERE (STUDENTS.LastName LIKE 'Q%') and (STUDENTS.StudentID = 6);
+-- update #10 table
+SELECT Points FROM `STUDENTGRADES`
+WHERE (StudentID = 6);
+--
 
 -- #11 query: compute the grade for a student
 SELECT DISTINCT pt.StudentID, st.FirstName, st.LastName, pt.CourseID,pt.AssignmentID, pt.CategoryName, pt.Points, pt.MaxPoints, pt.Percent
