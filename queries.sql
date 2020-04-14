@@ -39,7 +39,10 @@ inner join `COURSES` on (COURSES.CourseID = ENROLLMENT.CourseID) where (COURSES.
 order by AssignID, LastName asc;
 
 -- #7 query: Add an assignment to a course
-insert into ASSIGNMENTS(DistribID, Instance, MaxPoints) VALUES (1, 3, 100);
+insert into ASSIGNMENTS(DistribID, Instance, MaxPoints)
+VALUES (1, 3, 100);
+
+-- #8 query: Change the percentages of the categories for a course
 -- feel free to change Percent to set new distribution
 -- NOTE: another Percent must be altered to keep the total Percent = 100
 update DISTRIBUTION set Percent = 30
