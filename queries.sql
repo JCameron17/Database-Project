@@ -38,6 +38,15 @@ inner join `ASSIGNMENTS` on (ASSIGNMENTS.AssignID = SCORE.AssignID)
 inner join `COURSES` on (COURSES.CourseID = ENROLLMENT.CourseID) where (COURSES.CourseID = 1)
 order by AssignID, LastName asc;
 
+-- #7 query: Add an assignment to a course
+insert into ASSIGNMENTS(DistribID, Instance, MaxPoints) VALUES (1, 3, 100);
+-- feel free to change Percent to set new distribution
+-- NOTE: another Percent must be altered to keep the total Percent = 100
+update DISTRIBUTION set Percent = 30
+where DistribID = 1;
+update DISTRIBUTION set Percent = 40
+where DistribID = 3;
+
 -- #11 query: compute the grade for a student
 SELECT DISTINCT pt.StudentID, st.FirstName, st.LastName, pt.CourseID,pt.AssignmentID, pt.CategoryName, pt.Points, pt.MaxPoints, pt.Percent
 FROM (
