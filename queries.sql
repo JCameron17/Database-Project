@@ -63,13 +63,23 @@ LEFT JOIN `ASSIGNMENTS` ON (SCORE.AssignID = ASSIGNMENTS.AssignID) WHERE (SCORE.
 order by StudentID;
 
 -- #10 query: Add 2 points just to those students whose last name contains a ‘Q’
-UPDATE SCORE
-JOIN `STUDENTS` ON (SCORE.StudentID = STUDENTS.StudentID)
-SET Points = Points + 2
-WHERE (STUDENTS.LastName LIKE 'Q%') and (STUDENTS.StudentID = 6);
--- update #10 table
-SELECT Points FROM `SCORE`
-WHERE (StudentID = 6);
+SELECT * FROM `SCORE`
+LEFT JOIN `ASSIGNMENTS` ON (SCORE.AssignID = ASSIGNMENTS.AssignID) 
+WHERE (SCORE.StudentID = 6)
+order by StudentID;
+
+update `SCORE`
+left join `STUDENTS` 
+on (SCORE.StudentID = STUDENTS.StudentID)
+set Points = Points + 2
+where (STUDENTS.LastName LIKE '%q%')
+or (STUDENTS.LastName LIKE '%Q%')
+and (STUDENTS.StudentID = 6);
+
+SELECT * FROM `SCORE`
+LEFT JOIN `ASSIGNMENTS` ON (SCORE.AssignID = ASSIGNMENTS.AssignID) 
+WHERE (SCORE.StudentID = 6)
+order by StudentID;
 
 
 -- #11 query: compute the grade for a student
