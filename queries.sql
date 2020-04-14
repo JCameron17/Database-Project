@@ -23,12 +23,20 @@ select a.AssignID, a.MaxPoints, avg(s.POINTS) AS PointAVG, max(s.POINTS) AS Best
 from ASSIGNMENTS a, STUDENTGRADES s 
 where a.AssignID=2 AND s.AssignID=a.AssignID;
 
--- #5 query: student enrollments by course
+-- #5 query: List all of the students in a given course
 select LastName, FirstName, CourseName from `ENROLLMENT`
 inner join `STUDENTS` on (STUDENTS.StudentID = ENROLLMENT.StudentID)
 inner join `COURSES` on (COURSES.CourseID = ENROLLMENT.CourseID) where (COURSES.CourseID = 2)
 -- feel free to change the CourseID to get the student list for the other courses
 order by LastName asc;
+
+-- #6 query: List all of the students in a course and all of their scores on every assignment
+select LastName, FirstName, CourseName, ASSIGNMENTS.AssignID, Points, MaxPoints from `ENROLLMENT`
+inner join `STUDENTS` on (STUDENTS.StudentID = ENROLLMENT.StudentID)
+inner join `STUDENTGRADES` on (STUDENTGRADES.StudentID = ENROLLMENT.StudentID)
+inner join `ASSIGNMENTS` on (ASSIGNMENTS.AssignID = STUDENTGRADES.AssignID)
+inner join `COURSES` on (COURSES.CourseID = ENROLLMENT.CourseID) where (COURSES.CourseID = 1)
+order by AssignID, LastName asc;
 
 -- query: compute the grade for a student
 SELECT DISTINCT pt.StudentID, st.FirstName, st.LastName, pt.CourseID,pt.AssignmentID, pt.CategoryName, pt.Points, pt.MaxPoints, pt.Percent
