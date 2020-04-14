@@ -73,16 +73,24 @@ WHERE (StudentID = 6);
 --
 
 -- #11 query: compute the grade for a student
-SELECT DISTINCT pt.StudentID, st.FirstName, st.LastName, pt.CourseID,pt.AssignmentID, pt.CategoryName, pt.Points, pt.MaxPoints, pt.Percent
-FROM (
-    SELECT STUDENT.StudentID, AssignmentID, FirstName, LastName, CourseID, Points
-    FROM STUDENT JOIN ENROLLMENT JOIN SCORE
-    WHERE STUDENT.StudentID = ENROLLMENT.StudentID
-    AND STUDENT.StudentID = SCORE.StudentID) st
-JOIN
-(SELECT StudentID, CourseID, CategoryName, ASSIGNMENTS.AssignmentID, Points, ASSIGNMENTS.PointsPossible, DISTRIBUTION.Percent
-    FROM DISTRIBUTION JOIN ASSIGNMENTS JOIN SCORE
-    WHERE DISTRIBUTION.DistributionID = ASSIGNMENTS.DistributionID
-    AND ASSIGNMENTS.AssignmentID = SCORE.AssignmentID) pt
-WHERE st.AssignmentID = pt.AssignmentID
-AND st.Points = pt.Points AND st.StudentID=1234;
+# SELECT DISTINCT pt.StudentID, st.FirstName, st.LastName, pt.CourseID,pt.AssignmentID, pt.CategoryName, pt.Points, pt.MaxPoints, pt.Percent
+# FROM (
+#     SELECT STUDENT.StudentID, AssignmentID, FirstName, LastName, CourseID, Points
+#     FROM STUDENT JOIN ENROLLMENT JOIN SCORE
+#     WHERE STUDENT.StudentID = ENROLLMENT.StudentID
+#     AND STUDENT.StudentID = SCORE.StudentID) st
+# JOIN
+# (SELECT StudentID, CourseID, CategoryName, ASSIGNMENTS.AssignmentID, Points, ASSIGNMENTS.PointsPossible, DISTRIBUTION.Percent
+#     FROM DISTRIBUTION JOIN ASSIGNMENTS JOIN SCORE
+#     WHERE DISTRIBUTION.DistributionID = ASSIGNMENTS.DistributionID
+#     AND ASSIGNMENTS.AssignmentID = SCORE.AssignmentID) pt
+# WHERE st.AssignmentID = pt.AssignmentID
+# AND st.Points = pt.Points AND st.StudentID=1234;
+
+-- student final grade for Harriet Tubman in Software Engineering
+Select SUM(((sg.Points * 100) / a.MaxPoints) * (Percent / 100)) AS FINALGRADE
+FROM DISTRIBUTION d, ASSIGNMENTS a, STUDENTGRADES sg
+WHERE d.DistribID = a.DistribID
+AND sg.AssignID = a.AssignID
+AND d.CourseID = 3
+AND StudentID = 1;
