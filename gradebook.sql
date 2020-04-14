@@ -22,7 +22,7 @@ VALUES ('Harriet', 'Tubman', 'Computer Science'),
 ('Duke', 'Ellington', 'Computer Science');
 
 /* COURSES TABLE CREATION */
-DROP TABLE IF EXISTS `COURSES`; 
+DROP TABLE IF EXISTS `COURSES`;
 CREATE TABLE `COURSES` (
     `CourseID` int(11) NOT NULL AUTO_INCREMENT,
     `CourseName` varchar(255) DEFAULT NULL,
@@ -32,7 +32,7 @@ CREATE TABLE `COURSES` (
     `SchoolYear` int(4) DEFAULT NULL,
     PRIMARY KEY (`CourseID`)
  );
- 
+
  /* COURSE INFORMATION */
 INSERT INTO `COURSES` (CourseID, CourseName, Department, CourseNumber, Semester, SchoolYear)
 VALUES (CourseID, 'Database Systems', 'CSCI', '432', 'Spring', 2020),
@@ -93,9 +93,9 @@ VALUES (AssignID, 1, 1, 100),(AssignID, 2, 3, 100),(AssignID, 3, 2, 100),(Assign
 (AssignID, 13, 1, 100),(AssignID, 14, 1, 100),(AssignID, 15, 1, 100),(AssignID, 16, 2, 100),
 (AssignID, 17, 1, 100),(AssignID, 18, 1, 100),(AssignID, 19, 1, 100),(AssignID, 20, 1, 100);
 
-/* STUDENTGRADES TABLE CREATION */
-DROP TABLE IF EXISTS `STUDENTGRADES`;
-CREATE TABLE `STUDENTGRADES` (
+/* SCORE TABLE CREATION */
+DROP TABLE IF EXISTS `SCORE`;
+CREATE TABLE `SCORE` (
     `StudentID` int(11) NOT NULL,
     `AssignID` int(11) NOT NULL,
   	`Points` int(11) DEFAULT 0 NOT NULL,
@@ -104,7 +104,7 @@ CREATE TABLE `STUDENTGRADES` (
     FOREIGN KEY (`AssignID`) REFERENCES ASSIGNMENTS(AssignID)
 );
 
-INSERT INTO `STUDENTGRADES` (StudentID, AssignID, Points)
+INSERT INTO `SCORE` (StudentID, AssignID, Points)
 VALUES (1, 6, 90), (1, 7, 90), (1, 8, 90),(1, 9, 71), (1, 10, 88), (1, 11, 95), (1, 12, 76), (1, 13, 68), (1, 14, 87), (1, 15, 97), (1, 16, 95),
 (2, 1, 87), (2, 2, 78), (2, 3, 75), (2, 4, 90), (2, 5, 94), (2, 6, 74), (2, 7, 93), (2, 8, 83), (2, 9, 93), (2, 10, 74), (2, 11, 92), (2, 12, 90),
 (3, 1, 94), (3, 2, 92), (3, 3, 91), (3, 4, 90), (3, 5, 93), (3, 6, 82), (3, 7, 95), (3, 8, 83), (3, 13, 73), (3, 14, 90), (3, 15, 90), (3, 16, 90),
@@ -113,4 +113,3 @@ VALUES (1, 6, 90), (1, 7, 90), (1, 8, 90),(1, 9, 71), (1, 10, 88), (1, 11, 95), 
 (6, 1, 77), (6, 2, 88), (6, 3, 95), (6, 4, 93), (6, 13, 93), (6, 14, 97), (6, 15, 92), (6, 16, 88), (6, 17, 86), (6, 18, 85), (6, 19, 93), (6, 20, 94),
 (7, 9, 88), (7, 10, 94), (7, 11, 76), (7, 12, 89), (7, 13, 93), (7, 14, 92), (7, 15, 84), (7, 16, 73), (7, 17, 98), (7, 18, 89), (7, 19, 93), (7, 20, 89), (8, 5, 89), (8, 6, 93), (8, 7, 83), (8, 8, 92), (8, 9, 82), (8, 10, 67), (8, 11, 93), (8, 12, 93), (8, 17, 85), (8, 18, 89), (8, 19, 83), (8, 20, 89),
 (9, 1, 89), (9, 2, 83), (9, 3, 84), (9, 4, 93), (9, 5, 73), (9, 6, 72), (9, 7, 74), (9, 8, 84), (9, 17, 72), (9, 18, 93), (9, 19, 88), (9, 20, 83), (10, 9, 82), (10, 10, 92), (10, 11, 74), (10, 12, 84), (10, 13, 98), (10, 14, 97), (10, 15, 81), (10, 16, 73), (10, 17, 99), (10, 18, 81), (10, 19, 97), (10, 20, 85);
-
